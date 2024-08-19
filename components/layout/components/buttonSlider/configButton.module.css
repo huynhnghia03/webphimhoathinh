@@ -1,0 +1,58 @@
+/* configButton.module.css */
+.showArrow {
+    position: absolute;
+    top: 50%;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+    color: #4b4b4b;
+    cursor: pointer;
+    font-size: 1.5rem;
+    height: 32px;
+    width: 32px;
+    line-height: 32px;
+    text-align: center;
+    z-index: 1;
+}
+
+.prev {
+    left: 0;
+    transform: translate(-50%, -50%);
+}
+
+.next {
+    right: 0;
+    transform: translate(50%, -50%);
+}
+
+/* customStyles.module.css */
+.slick-dots {
+    position: absolute;
+    bottom: -25px;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.slick-dots li {
+    margin: 0 5px;
+}
+
+.slick-dots li button {
+    width: 10px;
+    height: 10px;
+    background-color: pink;
+    border-radius: 50%;
+    padding: 0;
+    border: none;
+    transition: background-color 0.3s;
+}
+
+.slick-dots li button:hover {
+    background-color: lightcoral;
+}
+
+.slick-dots li.slick-active button {
+    background-color: black;
+}
