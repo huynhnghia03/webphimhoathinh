@@ -57,7 +57,8 @@ export default function ContentLogin() {
                 description: response.message,
                 variant: "default",
             })
-            router.push(`/admin/manage-kkhstyw56`)
+            router.push('/admin/manage-kkhstyw56')
+            return
         } catch (error) {
             console.error('Login failed:', error)
             toast({
