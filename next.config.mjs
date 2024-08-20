@@ -12,6 +12,11 @@ const nextConfig = {
                 hostname: 'localhost', // Corrected hostname
                 pathname: '/**', // Optional: restricts paths within localhost
             },
+            {
+                protocol: 'https',
+                hostname: 'webphimhoathinh.vercel.app', // Corrected hostname
+                pathname: '/**', // Optional: restricts paths within localhost
+            },
         ],
 
 

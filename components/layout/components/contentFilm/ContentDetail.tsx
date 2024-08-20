@@ -1,5 +1,3 @@
-
-import { DetailMovie } from "@/common/dataMovie";
 import { Movie } from "@/common/dataTopicDto";
 import EpisodenFilm from "@/components/layout/components/contentFilm/episodenFilm";
 import { Button } from "@/components/ui/button";
