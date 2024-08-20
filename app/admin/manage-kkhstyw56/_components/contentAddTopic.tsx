@@ -39,6 +39,7 @@ export default function ContentAddTopic({ active = false, detailMovie }: { activ
 
     const handleCreateMovie = async () => {
         try {
+            console.log(file)
             const formData = new FormData()
             formData.append('file', file)
             formData.append('name', name)
@@ -46,6 +47,7 @@ export default function ContentAddTopic({ active = false, detailMovie }: { activ
             formData.append('finish', finish)
             formData.append('moreInteres', hot)
             formData.append('category', category)
+            formData.append('schedule', schedule)
             formData.append('time', time)
 
             const response = await createTopic(formData)
@@ -150,8 +152,6 @@ export default function ContentAddTopic({ active = false, detailMovie }: { activ
                             </div>
                         </div>
                         <div className="w-full sm:w-1/2"><label className="mb-3 mt-3 block text-sm font-medium text-black dark:text-white" htmlFor="finish">finish</label>
-                            {/* <input className="p-2 w-full rounded border border-stroke bg-gray px-[4.5px] py-3 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
-                                id="finish" type="text" name="finish" value={'' + finish} onChange={(e) => setFinish(Boolean(e.target.value))} /></div> */}
                             <ComboboxForm datas={booleanDates} schedule={finish} setSchedule={setFinish} />
                         </div>
                     </div>
@@ -159,8 +159,6 @@ export default function ContentAddTopic({ active = false, detailMovie }: { activ
                         <label className="mb-3 mt-3 block text-sm font-medium text-black dark:text-white" htmlFor="Hot">Hot</label>
                         <div className="relative">
                             <ComboboxForm datas={booleanDates} schedule={hot} setSchedule={setHot} />
-                            {/* <input className="p-2 w-full rounded border border-stroke bg-gray py-3 pl-11.5 pr-[4.5px] text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
-                                id="Hot" value={String(hot)} type="text" name="Hot" onChange={(e) => setHot(e.target.value)} /> */}
                         </div>
                     </div>
                     <div className="mb-5.5">

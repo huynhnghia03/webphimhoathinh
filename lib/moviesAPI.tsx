@@ -17,6 +17,9 @@ export async function getSchedules() {
 }
 
 export async function getMovieById(slug: string) {
+    if (slug == "path-to-placeholder-image.jpg") {
+        return
+    }
     try {
         const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/topic/${slug}/detail`, { next: { revalidate: 60 } });
         console.log(res)
@@ -84,8 +87,7 @@ export async function createTopic(data: any) {
         const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/topic/create`, {
             method: 'POST',
             credentials: 'include',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(data),
+            body: data,
         });
         if (!res.ok) {
             throw new Error(`Failed to create topic: ${res.statusText}`);

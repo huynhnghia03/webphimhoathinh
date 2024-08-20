@@ -5,28 +5,27 @@ import { deleteTopic, getMovies } from "@/lib/moviesAPI";
 import { DeleteIcon, EditIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useState, useEffect, useMemo } from "react";
+import { useState, useMemo } from "react";
+import useSWR from 'swr';
 
 export default function ContentDeleteTopic() {
-    const [movies, setMovies] = useState<Movie[]>([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const [totalMovies, setTotalMovies] = useState(0);
     const [moviesPerPage] = useState(10); // Number of movies per page
     const { toast } = useToast();
 
-    useEffect(() => {
+    const fetchMovies = async (page: number) => {
+        const { datas, total } = await getMovies(page);
+        return { datas, total };
+    };
 
-        const fetchMovies = async () => {
-            try {
-                const { datas, total } = await getMovies(Number(currentPage));
-                setMovies(datas);
-                setTotalMovies(total);
-            } catch (error) {
-                console.error("Failed to fetch movies:", error);
-            }
-        };
-        fetchMovies();
-    }, [currentPage]);
+    const { data, error, mutate } = useSWR(['movies', currentPage], () => fetchMovies(currentPage));
+
+    const movies = data?.datas || [];
+    const totalMovies = data?.total || 0;
+
+    if (error) {
+        console.error("Failed to fetch movies:", error);
+    }
 
     const handleDeleteMovie = async (id: string) => {
         try {
@@ -37,7 +36,7 @@ export default function ContentDeleteTopic() {
                     description: "The movie was successfully deleted.",
                     variant: "default",
                 });
-                setMovies(movies => movies.filter(movie => movie.id !== id));
+                mutate(); // Re-fetch the movies after deleting one
             } else {
                 toast({
                     title: "Delete failed",
@@ -54,7 +53,7 @@ export default function ContentDeleteTopic() {
         }
     };
 
-    const totalPages = useMemo(() => Math.ceil(totalMovies / moviesPerPage), [totalMovies, moviesPerPage]);
+    const totalPages = useMemo(() => Math.round(totalMovies / moviesPerPage), [totalMovies, moviesPerPage]);
 
     return (
         <div>
@@ -68,7 +67,7 @@ export default function ContentDeleteTopic() {
                     </tr>
                 </thead>
                 <tbody>
-                    {movies.map((movie) => (
+                    {movies.map((movie: Movie) => (
                         <tr key={movie.id} className="border-b last:border-b-0 border-gray-300">
                             <td className="px-6 py-4 xl:pl-8">
                                 <Image
