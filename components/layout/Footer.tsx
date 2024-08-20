@@ -15,7 +15,7 @@ export default function Footer() {
                     />
                 </div>
                 <div className='flex gap-4 items-center'>
-                    <Link href='/' passHref>
+                    <Link href='https://www.facebook.com/profile.php?id=100083601408184' passHref>
 
                         <Image
                             src='/facebook.png'
@@ -26,7 +26,7 @@ export default function Footer() {
                         />
 
                     </Link>
-                    <Link href='/' passHref>
+                    <Link href='https://www.youtube.com/@DoraDoreemon' passHref>
 
                         <Image
                             src='/youtube.png'
@@ -37,7 +37,7 @@ export default function Footer() {
                         />
 
                     </Link>
-                    <Link href='/' passHref>
+                    <Link href='https://www.tiktok.com/@review.dora' passHref>
 
                         <Image
                             src='/social-media.png'
