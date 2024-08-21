@@ -42,7 +42,6 @@ export default function ContentLogin() {
     async function onSubmit(data: z.infer<typeof FormSchema>) {
         try {
             const response = await login(data)
-            console.log(response)
 
             if (response.statusCode !== 200) { // Adjust if statusCode is a number
                 toast({
