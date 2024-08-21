@@ -1,4 +1,4 @@
-import ContentDetail from "../../components/layout/components/contentFilm/ContentDetail";
+import ContentDetail from "@/components/layout/components/contentFilm/ContentDetail";
 import { getMovieById } from "@/lib/moviesAPI";
 import { notFound } from 'next/navigation';
 

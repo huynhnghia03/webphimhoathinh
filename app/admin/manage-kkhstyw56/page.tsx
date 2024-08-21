@@ -4,7 +4,6 @@ import LogOut from "./logout";
 import ContentDeleteTopic from "./_components/contentDeleteMovie";
 
 export default function MangeAllMovie() {
-
   return (
     <div className="bg-white shadow-sm rounded-b-lg overflow-hidden">
       <LogOut />

@@ -1,3 +1,5 @@
+'use server'
+import { cookies } from 'next/headers'
 import { notFound } from "next/navigation";
 
 export async function getMovies(id?: number) {
@@ -35,29 +37,29 @@ export async function getMovieById(slug: string) {
         const data = await res.json();
         // Check if the data is in the expected format
         if (!data || typeof data !== 'object') {
-            throw new Error('Invalid data format');
+            return notFound();
         }
         return data;
     } catch (error) {
-        console.error('Error fetching movie by slug:', error);
-        return null;  // Return null or a default value if needed
+        return notFound();
     }
 }
 
 export async function getMovieBySlugRelation(slug: string) {
     try {
         const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/topic/${slug}/relation`, {
-            credentials: 'include',
+            headers: {
+                'Authorization': `Bearer ${cookies().get('user_token')?.value}`
+            },
             method: 'GET',
             cache: "no-cache",
         });
         if (!res.ok) {
-            throw new Error(`Failed to fetch data: ${res.statusText}`);
+            return notFound();
         }
         return res.json();
     } catch (error) {
-        console.error('Error fetching movie relations by slug:', error);
-        return null;
+        return notFound();
     }
 }
 
@@ -73,12 +75,11 @@ export async function getEpisoden(slug: string, episoden: string) {
     try {
         const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/episoden/${slug}/${episoden}`, { next: { revalidate: 30 } });
         if (!res.ok) {
-            throw new Error(`Failed to fetch data: ${res.statusText}`);
+            return notFound();
         }
         return res.json();
     } catch (error) {
-        console.error('Error fetching episoden:', error);
-        return null;
+        return notFound();
     }
 }
 
@@ -86,16 +87,17 @@ export async function createTopic(data: any) {
     try {
         const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/topic/create`, {
             method: 'POST',
-            credentials: 'include',
+            headers: {
+                'Authorization': `Bearer ${cookies().get('user_token')?.value}` // Nếu cần
+            },
             body: data,
         });
         if (!res.ok) {
-            throw new Error(`Failed to create topic: ${res.statusText}`);
+            return notFound();
         }
         return res.json();
     } catch (error) {
-        console.error('Error creating topic:', error);
-        return null;
+        return notFound();
     }
 }
 
@@ -103,16 +105,17 @@ export async function updateTopic(id: string, data: any) {
     try {
         const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/topic/${id}/update`, {
             method: 'POST',
-            credentials: 'include',
+            headers: {
+                'Authorization': `Bearer ${cookies().get('user_token')?.value}` // Nếu cần
+            },
             body: data,
         });
         if (!res.ok) {
-            throw new Error(`Failed to update topic: ${res.statusText}`);
+            return notFound();
         }
         return res.json();
     } catch (error) {
-        console.error('Error updating topic:', error);
-        return null;
+        return notFound();
     }
 }
 
@@ -137,15 +140,16 @@ export async function deleteTopic(id: string) {
     try {
         const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/topic/${id}/delete`, {
             method: 'DELETE',
-            credentials: 'include',
+            headers: {
+                'Authorization': `Bearer ${cookies().get('user_token')?.value}` // Nếu cần
+            },
         });
         if (!res.ok) {
-            throw new Error(`Failed to delete topic: ${res.statusText}`);
+            return notFound();
         }
         return res.json();
     } catch (error) {
-        console.error('Error deleting topic:', error);
-        return null;
+        return notFound();
     }
 }
 
@@ -154,16 +158,18 @@ export async function createVideo(id: string, episoden: any) {
         const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/episoden/${id}/create`, {
             method: 'POST',
             credentials: 'include',
-            headers: { 'Content-Type': 'application/json' },
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${cookies().get('user_token')?.value}`
+            },
             body: JSON.stringify(episoden),
         });
         if (!res.ok) {
-            throw new Error(`Failed to create video: ${res.statusText}`);
+            return notFound();
         }
         return res.json();
     } catch (error) {
-        console.error('Error creating video:', error);
-        return null;
+        return notFound();
     }
 }
 
@@ -172,16 +178,18 @@ export async function updateVideo(id: string, episoden: any) {
         const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/episoden/${id}/update`, {
             method: 'POST',
             credentials: 'include',
-            headers: { 'Content-Type': 'application/json' },
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${cookies().get('user_token')?.value}`
+            },
             body: JSON.stringify(episoden),
         });
         if (!res.ok) {
-            throw new Error(`Failed to update video: ${res.statusText}`);
+            return notFound();
         }
         return res.json();
     } catch (error) {
-        console.error('Error updating video:', error);
-        return null;
+        return notFound();
     }
 }
 
@@ -189,15 +197,16 @@ export async function deleteVideo(id: string) {
     try {
         const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/episoden/${id}/delete`, {
             method: 'DELETE',
-            credentials: 'include',
+            headers: {
+                'Authorization': `Bearer ${cookies().get('user_token')?.value}` // Nếu cần
+            },
         });
         if (!res.ok) {
-            throw new Error(`Failed to delete video: ${res.statusText}`);
+            return notFound();
         }
         return res.json();
     } catch (error) {
-        console.error('Error deleting video:', error);
-        return null;
+        return notFound();
     }
 }
 
@@ -205,12 +214,11 @@ export async function getDetailVideo(slug: string, episoden: string) {
     try {
         const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/episoden/${slug}/${episoden}`, { next: { revalidate: 30 } });
         if (!res.ok) {
-            throw new Error(`Failed to fetch video details: ${res.statusText}`);
+            return notFound();
         }
         return res.json();
     } catch (error) {
-        console.error('Error fetching video details:', error);
-        return null;
+        return notFound();
     }
 }
 
@@ -219,16 +227,24 @@ export async function login(data: { email: string, password: string }) {
         const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/admin/login`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            credentials: 'include',
             body: JSON.stringify(data),
         });
         if (!res.ok) {
-            throw new Error(`Login failed: ${res.statusText}`);
+            return notFound();
         }
-        return res.json();
+        const datas = await res.json()
+        cookies().set({
+            name: 'user_token',
+            value: datas.user_token,
+            httpOnly: true,
+            secure: true,
+            sameSite: 'lax',
+            path: '/',
+            maxAge: 60 * 60
+        })
+        return datas;
     } catch (error) {
-        console.error('Error logging in:', error);
-        return null;
+        return notFound();
     }
 }
 
@@ -236,15 +252,13 @@ export async function logOut() {
     try {
         const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/admin/logout`, {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            credentials: 'include',
+            headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${cookies().get('user_token')?.value}` },
         });
         if (!res.ok) {
-            throw new Error(`Logout failed: ${res.statusText}`);
+            return notFound();
         }
         return res.json();
     } catch (error) {
-        console.error('Error logging out:', error);
-        return null;
+        return notFound();
     }
 }

@@ -1,5 +1,5 @@
 "use client"
-
+import Cookies from 'js-cookie';
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
@@ -57,6 +57,7 @@ export default function ContentLogin() {
                 description: response.message,
                 variant: "default",
             })
+            // Cookies.set('user_token', response.use_token, { expires: 7, path: '/' });
             router.push('/admin/manage-kkhstyw56')
             return
         } catch (error) {

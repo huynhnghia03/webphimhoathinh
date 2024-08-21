@@ -10,7 +10,7 @@ export default function LogOut() {
     const handelLogout = async () => {
         try {
             const response = await logOut();
-            if (response.code != "200") {
+            if (response.statusCode != "200") {
                 toast({
                     title: "Logout failed",
                     description: "Unable to log out. Please try again.",
