@@ -15,7 +15,7 @@ async function ContentDetail({ detailMovie, episoden = false }: { detailMovie: M
 
                         detailMovie && <div className="flex gap-5 text-white ">
                             <Card className="bg-[#2c2c33] relative">
-                                <Image src={`${detailMovie?.image}`} alt="nnvh" width={300} height={449} className="w-auto h-auto object-cover" style={{ borderRadius: "inherit" }} />
+                                <Image src={`${detailMovie?.image}`} alt="nnvh" width={300} height={500} className="w-auto h-auto object-cover" style={{ borderRadius: "inherit" }} />
                                 <Link href={`/${detailMovie?.slug}/tap-${detailMovie?.newEpiso}.html`}>
                                     <Button className="text-[0.7rem] sm:text-lg absolute bottom-5 right-0 left-0 m-auto w-[60%] bg-gradient-to-r from-pink-600 via-red-500 to-yellow-600 
                     background-animate bg-orange-500 shadow-lg shadow-orange-500/60 transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300">Xem Phim</Button>

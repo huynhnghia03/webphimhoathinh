@@ -8,7 +8,9 @@ export default function Navbar() {
         <div className='text-white flex gap-6 h-24 px-2 items-center justify-between'>
             <div className='md:mb-0'>
                 <Link href={'/'}>
-                    <Image src={'/logo.png'} alt='logo' width={200} height={100} className='w-30 h-20 object-cover rounded-md' />
+                    <Image src={'/logo.png'} alt='logo' width={200} height={100}
+                        priority
+                        className='w-30 h-20 object-cover rounded-md' />
                 </Link>
                 {/* <h1 className='bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 
                     background-animate'>HH3d</h1> */}

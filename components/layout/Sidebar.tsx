@@ -20,7 +20,7 @@ export default async function SideBar() {
                                         alt="anh"
                                         width={75}
                                         height={250}
-                                        className={`object-cover ${ind === 0 ? "rounded-tl-md" : ind === hotMovies.length - 1 ? "rounded-bl-md" : ""} transform transition-transform duration-300 ease-in-out group-hover:scale-105`}
+                                        className={`w-auto h-auto object-cover ${ind === 0 ? "rounded-tl-md" : ind === hotMovies.length - 1 ? "rounded-bl-md" : ""} transform transition-transform duration-300 ease-in-out group-hover:scale-105`}
                                     />
                                     <span className="transition-colors transform duration-300 ease-in-out group-hover:translate-y-1 group-hover:scale-105 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-[#ff8a00] group-hover:via-[#ff2070] group-hover:to-[#ff2070]">
                                         {item.name}

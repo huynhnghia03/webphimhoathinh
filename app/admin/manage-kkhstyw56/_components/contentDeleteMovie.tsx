@@ -75,9 +75,7 @@ export default function ContentDeleteTopic() {
                                     alt={movie.name}
                                     width={100}
                                     height={100}
-                                    placeholder="blur"
-                                    blurDataURL="/path-to-placeholder-image.jpg"
-                                    loading="lazy"
+                                    className="w-auto h-auto"
                                 />
                             </td>
                             <td className="px-6 py-4">
