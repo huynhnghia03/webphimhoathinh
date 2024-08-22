@@ -24,7 +24,7 @@ export async function getMovieById(slug: string) {
     }
     try {
         const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/topic/${slug}/detail`, { next: { revalidate: 60 } });
-        console.log(res)
+
         if (!res.ok) {
             // Handle HTTP errors based on status codes
             if (res.status === 404) {
@@ -252,11 +252,12 @@ export async function logOut() {
     try {
         const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/admin/logout`, {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${cookies().get('user_token')?.value}` },
+            headers: { 'Authorization': `Bearer ${cookies().get('user_token')?.value}` },
         });
         if (!res.ok) {
             return notFound();
         }
+        cookies().delete('user_token')
         return res.json();
     } catch (error) {
         return notFound();

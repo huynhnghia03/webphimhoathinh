@@ -3,24 +3,25 @@ const nextConfig = {
     images: {
         remotePatterns: [
             {
-                protocol: 'http',
-                hostname: 'localhost', // Corrected hostname
-                pathname: '/**', // Optional: restricts paths within localhost
+                protocol: 'https',
+                hostname: process.env.NEXT_PUBLIC_API_URL_UPLOAD,
+                pathname: '/**',
             },
             {
                 protocol: 'https',
-                hostname: 'webhoathinhserver.vercel.app', // Corrected hostname
-                pathname: '/**', // Optional: restricts paths within localhost
-            },
-            {
-                protocol: 'https',
-                hostname: 'webphimhoathinh.vercel.app', // Corrected hostname
-                pathname: '/**', // Optional: restricts paths within localhost
+                hostname: process.env.NEXT_PUBLIC_API_FRONTEND,
+                pathname: '/**',
             },
         ],
-
-
-    }
+    },
+    async rewrites() {
+        return [
+            {
+                source: '/',
+                destination: process.env.NEXT_PUBLIC_API_URL + "/:path*",
+            },
+        ]
+    },
 };
 
 export default nextConfig;
