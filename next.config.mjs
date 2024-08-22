@@ -20,6 +20,10 @@ const nextConfig = {
                 source: '/',
                 destination: process.env.NEXT_PUBLIC_API_URL + "/:path*",
             },
+            {
+                source: '/',
+                destination: process.env.NEXT_PUBLIC_API_URL_UPLOAD + "/:path*",
+            },
         ]
     },
 };
