@@ -16,7 +16,7 @@ export default async function SideBar() {
                             <Link href={`/${item.slug}`}>
                                 <div className={`bg-gradient-to-r from-[#3f3f43] to-[#0c0c0e] group-hover:bg-black ${ind === 0 ? "rounded-t-lg" : ind === hotMovies.length - 1 ? "rounded-b-lg" : ""} flex gap-5 `}>
                                     <Image
-                                        src={`${process.env.NEXT_PUBLIC_API_URL_UPLOAD}${item.image}`}
+                                        src={`${item.image}`}
                                         alt="anh"
                                         width={75}
                                         height={250}

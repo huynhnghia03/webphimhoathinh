@@ -52,7 +52,7 @@ export const BentoGridItem = ({
 
                 <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl  overflow-hidden relative">
 
-                    <Image src={`${process.env.NEXT_PUBLIC_API_URL_UPLOAD}${image}`} alt="anh" width="170" height="280" className="w-[100%] h-[100%] object-cover transform transition-transform duration-300 hover:scale-105 hover:opacity-[0.8]" style={{ borderRadius: "inherit" }} />
+                    <Image src={`${image}`} alt="anh" width="170" height="280" className="w-[100%] h-[100%] object-cover transform transition-transform duration-300 hover:scale-105 hover:opacity-[0.8]" style={{ borderRadius: "inherit" }} />
 
                     {/* <AnimateImage /> */}
                 </div>

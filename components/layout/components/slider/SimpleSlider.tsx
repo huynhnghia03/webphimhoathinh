@@ -56,7 +56,7 @@ export default function SimpleSlider({ datas }: { datas: Movie[] }) {
           >
             <Link href={`${val.slug}`}>
               <Image
-                src={`${process.env.NEXT_PUBLIC_API_URL_UPLOAD}${val.image}`}
+                src={`${val.image}`}
                 alt={val.name || "Movie Image"}
                 height={300}
                 width={300}
