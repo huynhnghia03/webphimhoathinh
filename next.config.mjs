@@ -3,6 +3,11 @@ const nextConfig = {
     images: {
         remotePatterns: [
             {
+                protocol: 'http',
+                hostname: 'localhost', // Corrected hostname
+                pathname: '/**', // Optional: restricts paths within localhost
+            },
+            {
                 protocol: 'https',
                 hostname: process.env.NEXT_PUBLIC_API_URL_UPLOAD,
                 pathname: '/**',
@@ -18,12 +23,8 @@ const nextConfig = {
         return [
             {
                 source: '/',
-                destination: process.env.NEXT_PUBLIC_API_URL + "/:path*",
-            },
-            {
-                source: '/',
                 destination: process.env.NEXT_PUBLIC_API_URL_UPLOAD + "/:path*",
-            },
+            }
         ]
     },
 };
