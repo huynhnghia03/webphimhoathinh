@@ -68,7 +68,7 @@ export default function ContentDeleteTopic() {
                 </thead>
                 <tbody>
                     {movies.map((movie: Movie) => (
-                        <tr key={movie.id} className="border-b last:border-b-0 border-gray-300">
+                        <tr key={"/" + movie.id} className="border-b last:border-b-0 border-gray-300">
                             <td className="px-6 py-4 xl:pl-8">
                                 <Image
                                     src={movie.image}

@@ -53,7 +53,7 @@ export const BentoGridItem = ({
                 <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl  overflow-hidden relative">
 
                     <Image
-                        src={`${image}`}
+                        src={`/${image}`}
                         alt="anh"
                         width={170}
                         height={280}

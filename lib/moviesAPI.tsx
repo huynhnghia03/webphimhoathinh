@@ -3,7 +3,7 @@ import { cookies } from 'next/headers'
 import { notFound } from "next/navigation";
 
 export async function getMovies(id?: number) {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/topic/AllTopics/${id || 1}`, { next: { revalidate: 60 } });
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/topic/AllTopics/${id || 1}`, { next: { revalidate: 30 } });
     if (!res.ok) {
         return notFound();
     }
@@ -11,7 +11,7 @@ export async function getMovies(id?: number) {
 }
 
 export async function getSchedules() {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/topic/getSchedules`, { next: { revalidate: 30 } });
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/topic/getSchedules`, { next: { revalidate: 3600 } });
     if (!res.ok) {
         return notFound();
     }
@@ -19,11 +19,8 @@ export async function getSchedules() {
 }
 
 export async function getMovieById(slug: string) {
-    if (slug == "path-to-placeholder-image.jpg") {
-        return
-    }
     try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/topic/${slug}/detail`, { next: { revalidate: 60 } });
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/topic/${slug}/detail`, { next: { revalidate: 10 } });
 
         if (!res.ok) {
             // Handle HTTP errors based on status codes
@@ -212,7 +209,7 @@ export async function deleteVideo(id: string) {
 
 export async function getDetailVideo(slug: string, episoden: string) {
     try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/episoden/${slug}/${episoden}`, { next: { revalidate: 30 } });
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/episoden/${slug}/${episoden}`, { next: { revalidate: 120 } });
         if (!res.ok) {
             return notFound();
         }
