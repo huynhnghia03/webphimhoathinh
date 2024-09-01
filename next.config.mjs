@@ -17,7 +17,11 @@ const nextConfig = {
             },
             {
                 source: '/api/:path*',
-                destination: `${process.env.NEXT_PUBLIC_API_URL}`, // Add a leading slash to the URL
+                destination: `${process.env.NEXT_PUBLIC_API_URL}/:path*`, // Add a leading slash to the URL
+            },
+            {
+                source: '/episoden/:path*',
+                destination: `${process.env.NEXT_PUBLIC_API_URL}/episoden/:path*`, // Add a leading slash to the URL
             }
         ]
     },

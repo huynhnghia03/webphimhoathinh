@@ -3,7 +3,7 @@ import { cookies } from 'next/headers'
 import { notFound } from "next/navigation";
 
 export async function getMovies(id?: number) {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/topic/AllTopics/${id || 1}`, { next: { revalidate: 30 } });
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/topic/AllTopics/${id || 1}`, { next: { revalidate: 60 } });
     if (!res.ok) {
         return notFound();
     }
@@ -11,7 +11,7 @@ export async function getMovies(id?: number) {
 }
 
 export async function getSchedules() {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/topic/getSchedules`, { next: { revalidate: 3600 } });
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/topic/getSchedules`, { next: { revalidate: 60 } });
     if (!res.ok) {
         return notFound();
     }
@@ -43,14 +43,15 @@ export async function getMovieById(slug: string) {
 }
 
 export async function getMovieBySlugRelation(slug: string) {
+    console.log(slug)
     try {
         const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/topic/${slug}/relation`, {
             headers: {
                 'Authorization': `Bearer ${cookies().get('user_token')?.value}`
             },
             method: 'GET',
-            cache: "no-cache",
         });
+        console.log(res)
         if (!res.ok) {
             return notFound();
         }
@@ -70,10 +71,12 @@ export async function getHotMovie() {
 
 export async function getEpisoden(slug: string, episoden: string) {
     try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/episoden/${slug}/${episoden}`, { next: { revalidate: 30 } });
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/episoden/${slug}/${episoden}`);
+        console.log(res)
         if (!res.ok) {
             return notFound();
         }
+
         return res.json();
     } catch (error) {
         return notFound();
@@ -156,10 +159,10 @@ export async function createVideo(id: string, episoden: any) {
             method: 'POST',
             credentials: 'include',
             headers: {
-                'Content-Type': 'application/json',
+
                 'Authorization': `Bearer ${cookies().get('user_token')?.value}`
             },
-            body: JSON.stringify(episoden),
+            body: episoden,
         });
         if (!res.ok) {
             return notFound();
@@ -209,7 +212,8 @@ export async function deleteVideo(id: string) {
 
 export async function getDetailVideo(slug: string, episoden: string) {
     try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/episoden/${slug}/${episoden}`, { next: { revalidate: 120 } });
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/episoden/${slug}/${episoden}`);
+
         if (!res.ok) {
             return notFound();
         }
@@ -218,6 +222,7 @@ export async function getDetailVideo(slug: string, episoden: string) {
         return notFound();
     }
 }
+
 
 export async function login(data: { email: string, password: string }) {
     try {

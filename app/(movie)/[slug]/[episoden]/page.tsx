@@ -6,7 +6,7 @@ import { notFound } from "next/navigation";
 async function Episoden({ params }: { params: { slug: string, episoden: string } }) {
     console.log(params)
     const detailEpisoden: Movie = await getEpisoden(params.slug, params.episoden)
-
+    console.log(detailEpisoden.episodens)
     if (!detailEpisoden.episodens || detailEpisoden.episodens.length < 1) {
         return notFound()
     }

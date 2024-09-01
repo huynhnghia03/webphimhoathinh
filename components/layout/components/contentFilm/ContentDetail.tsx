@@ -5,6 +5,7 @@ import { Card } from "@/components/ui/card";
 import { Clock } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import VideoEncrypt from "./videoEncrypt";
 
 async function ContentDetail({ detailMovie, episoden = false }: { detailMovie: Movie, episoden?: boolean }) {
     return (
@@ -47,11 +48,15 @@ async function ContentDetail({ detailMovie, episoden = false }: { detailMovie: M
                    hover:opacity-[1] p-1 rounded-sm">Link 1</span>
                             </div>
                             <div className="w-full relative pt-[60%]">
-                                <iframe
-                                    src={detailMovie?.episodens[0].urlVideo}
-                                    allowFullScreen
-                                    className="absolute top-0 left-0 w-[100%] h-[100%]"
-                                />
+                                {detailMovie?.episodens[0].urlVideo.startsWith("upload/episoden") ?
+                                    <VideoEncrypt url={detailMovie?.episodens[0].urlVideo} />
+                                    :
+                                    <iframe
+                                        src={detailMovie?.episodens[0].urlVideo}
+                                        allowFullScreen
+                                        className="absolute top-0 left-0 w-[100%] h-[100%]"
+                                    />
+                                }
                             </div>
 
                         </div>

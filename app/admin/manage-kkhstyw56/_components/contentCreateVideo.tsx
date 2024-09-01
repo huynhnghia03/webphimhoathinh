@@ -23,8 +23,16 @@ export default function ContentCreateVideo({ slug, getDetailTopic, activeUpdate 
                 slug: "",
                 thumbImg: ""
             };
+            const formData = new FormData()
+            formData.append('file', video)
+            formData.append('tiltle', title)
+            formData.append('description', description)
+            formData.append('episoden', episoden)
+            formData.append('urlVideo', urlVideo)
+            formData.append('slug', "")
+            formData.append('thumbImg', "")
 
-            const response = await createVideo(slug, data);
+            const response = await createVideo(slug, formData);
             if (response) {
                 toast({
                     title: "Create successful",
