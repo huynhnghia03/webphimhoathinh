@@ -13,7 +13,7 @@ export default function ItemNavbar() {
             <Link href={'/'} passHref className={isActive('/') ? 'bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 p-2 rounded-md' : 'hover:bg-gradient-to-r from-pink-300 via-red-300 to-yellow-300 p-2 rounded-md'}>
                 Trang Chủ
             </Link>
-            <Link href={'/doraemon'} passHref className={isActive('/Doraemon') ? 'bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 p-2 rounded-md' : 'hover:bg-gradient-to-r from-pink-300 via-red-300 to-yellow-300 p-2 rounded-md'}>
+            <Link href={'/doraemon'} passHref className={isActive('/doraemon') ? 'bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 p-2 rounded-md' : 'hover:bg-gradient-to-r from-pink-300 via-red-300 to-yellow-300 p-2 rounded-md'}>
                 Doraemon
             </Link>
             <Link href={'/AllFilm/1'} passHref className={isActive('AllFilm') ? 'bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 p-2 rounded-md' : 'hover:bg-gradient-to-r from-pink-300 via-red-300 to-yellow-300 p-2 rounded-md'}>
