@@ -28,7 +28,7 @@ export default function RootLayout({
         </div>
 
         <div className=" px-4 mb-4 md:px-8 lg:px-16 xl:px-32">
-          <GlobalEffects />
+          {/* <GlobalEffects /> */}
           {children}
         </div>
         <div className=" m-auto bg-[#232329] md:px-8 lg:px-16 xl:px-32">

@@ -47,7 +47,7 @@ async function ContentDetail({ detailMovie, episoden = false }: { detailMovie: M
                                 <span className="cursor-pointer opacity-[0.9] bg-gradient-to-r from-blue-700 via-blue-700 to-blue-900 
                    hover:opacity-[1] p-1 rounded-sm">Link 1</span>
                             </div>
-                            <div className="w-full relative pt-[60%]">
+                            <div className={`w-full relative ${detailMovie?.episodens[0].urlVideo.startsWith("upload/episoden") ? 'h-[350px]' : "pt-[60%]"}`}>
                                 {detailMovie?.episodens[0].urlVideo.startsWith("upload/episoden") ?
                                     <VideoEncrypt url={detailMovie?.episodens[0].urlVideo} />
                                     :

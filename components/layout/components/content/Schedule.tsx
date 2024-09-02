@@ -31,7 +31,7 @@ export default async function Schedule() {
             </TabsList>
             {dateOfWeek.map((item, index) => (
                 <TabsContent key={index} value={item.value} className="">
-                    <GridContent movies={schedules.filter(movie => movie.schedule === item.value)} />
+                    <GridContent movies={schedules.filter(movie => movie.schedule === item.value || "SP" === movie.schedule)} />
                 </TabsContent>
             ))}
         </Tabs>

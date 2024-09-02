@@ -3,6 +3,12 @@ import Link from "next/link";
 import ContentCreateVideo from "../../_components/contentCreateVideo";
 import { getDetailVideo } from "@/lib/moviesAPI";
 import { Movie } from "@/common/dataTopicDto";
+
+// export async function generateStaticParams() {
+//     // Fetch the total number of pages from your API or database
+
+//     return
+// }
 export default async function VideoPage({ params }: { params: { slug: string, episoden: string } }) {
 
     const getDetailTopic: Movie = await getDetailVideo(params.slug, params.episoden)

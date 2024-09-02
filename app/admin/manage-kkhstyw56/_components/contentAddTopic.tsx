@@ -30,7 +30,8 @@ export default function ContentAddTopic({ active = false, detailMovie }: { activ
         { label: "Thứ 5", value: "TH" },
         { label: "Thứ 6", value: "F" },
         { label: "Thứ 7", value: "S" },
-        { label: "Chủ Nhật", value: "SU" }
+        { label: "Chủ Nhật", value: "SU" },
+        { label: "ALL", value: "SP" }
     ]
     const booleanDates: typeData[] = [
         { label: "True", value: "true" },
