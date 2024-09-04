@@ -6,6 +6,7 @@ import "slick-carousel/slick/slick-theme.css";
 import "./globals.css";
 import { Navbar, Footer } from "@/components/layout";
 import { Toaster } from "@/components/ui/toaster"
+import GlobalEffects from "./GlobalEffects";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -42,7 +43,7 @@ export default function RootLayout({
         </div>
 
         <div className=" px-4 mb-4 md:px-8 lg:px-16 xl:px-32">
-          {/* <GlobalEffects /> */}
+          <GlobalEffects />
           {children}
         </div>
         <div className=" m-auto bg-[#232329] md:px-8 lg:px-16 xl:px-32">
