@@ -6,14 +6,27 @@ import "slick-carousel/slick/slick-theme.css";
 import "./globals.css";
 import { Navbar, Footer } from "@/components/layout";
 import { Toaster } from "@/components/ui/toaster"
-import GlobalEffects from "./GlobalEffects";
 
 const inter = Inter({ subsets: ["latin"] });
 
+// export const metadata: Metadata = {
+//   title: "Hoạt Hình Trung Quốc 3D",
+//   description: "Tổng hợp DORAEMON | HHTQ 3D | Hoạt Hình Trung Quốc 3D - Chinese Animation 3D - CN Animation 3D HD Vietsub, mới nhất 2024 cập nhật hàng ngày...",
+
+// };
 export const metadata: Metadata = {
-  title: "HH3DTH",
-  description: "Phim Hoạt Hình 3D",
+  metadataBase: new URL(process.env.NEXT_PUBLIC_API_FRONTEND || "/"), // Thay đổi 'https://your-domain.com' thành domain của bạn
+  title: 'Hoạt Hình Trung Quốc 3D',
+  description: 'Tổng hợp DORAEMON | HHTQ 3D | Hoạt Hình Trung Quốc 3D - Chinese Animation 3D - CN Animation 3D HD Vietsub, mới nhất 2024 cập nhật hàng ngày...',
+  openGraph: {
+    type: 'website',
+    locale: 'vi',
+    url: process.env.NEXT_PUBLIC_API_FRONTEND,
+    siteName: 'Hoạt Hình Trung Quốc 3D',
+  }
 };
+
+
 
 export default function RootLayout({
   children,
@@ -22,6 +35,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="vi">
+
       <body className={`${inter.className} bg-[#4b4b4b]`}>
         <div className="w-full bg-[#232329] md:px-8 lg:px-16 xl:px-32">
           <Navbar />
