@@ -43,7 +43,6 @@ export async function getMovieById(slug: string) {
 }
 
 export async function getMovieBySlugRelation(slug: string) {
-    console.log(slug)
     try {
         const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/topic/${slug}/relation`, {
             headers: {
@@ -51,7 +50,6 @@ export async function getMovieBySlugRelation(slug: string) {
             },
             method: 'GET',
         });
-        console.log(res)
         if (!res.ok) {
             return notFound();
         }
@@ -62,7 +60,7 @@ export async function getMovieBySlugRelation(slug: string) {
 }
 
 export async function getHotMovie() {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/topic/hotMovie`, { next: { revalidate: 3600 } });
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/topic/hotMovie`, { next: { revalidate: 120 } });
     if (!res.ok) {
         return notFound();
     }
@@ -72,7 +70,7 @@ export async function getHotMovie() {
 export async function getEpisoden(slug: string, episoden: string) {
     try {
         const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/episoden/${slug}/${episoden}`);
-        console.log(res)
+
         if (!res.ok) {
             return notFound();
         }

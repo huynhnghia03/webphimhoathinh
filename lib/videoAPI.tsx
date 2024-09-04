@@ -2,7 +2,6 @@
 import { notFound } from "next/navigation";
 
 export async function getVideo(date: string, slug: string) {
-    console.log(date, slug)
     try {
         const res = await fetch(`${process.env.NEXT_PUBLIC_API_FRONTEND}episoden/stream/${date}/${slug}`, {
             method: 'GET',
@@ -12,7 +11,7 @@ export async function getVideo(date: string, slug: string) {
         if (!res.ok) {
             return notFound();
         }
-        console.log(res)
+
         // return res.json();
         // console.log(await res.blob())
         const videoBlob = await res.blob();

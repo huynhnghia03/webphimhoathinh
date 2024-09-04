@@ -7,7 +7,6 @@ import { useToast } from '@/components/ui/use-toast';
 import { useState } from 'react';
 
 function MovieTable({ episodens, slug }: { episodens: Movie, slug: string }) {
-    console.log(episodens)
     const router = useRouter();
     const [videos, setVideos] = useState(episodens.episodens);
 

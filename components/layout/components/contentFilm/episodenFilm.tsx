@@ -5,8 +5,6 @@ import { Menu } from "lucide-react"
 import Link from "next/link"
 
 export default function EpisodenFilm({ detailFilm }: { detailFilm: Movie }) {
-    console.log(detailFilm.totalEpiso)
-
     return (
         detailFilm && <div className=" border-gray-500">
             <div className="text-white flex mt-5 bg-[#40404c] w-[100px] p-3 items-center gap-1 rounded-t-lg">

@@ -26,7 +26,6 @@ const Player: React.FC<PlayerProps> = (props) => {
     const player = videojs(videoEl, props);
 
     player.ready(() => {
-      console.log('Player is ready');
       player.src(props.sources);
       if (props.autoplay) {
         player.play();

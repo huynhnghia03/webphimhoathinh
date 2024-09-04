@@ -20,6 +20,8 @@ export default function ContentAddTopic({ active = false, detailMovie }: { activ
     const [finish, setFinish] = useState(detailMovie?.finish?.toString() || "false")
     const [hot, setHot] = useState(detailMovie?.moreInteres?.toString() || "false")
     const [description, setDescription] = useState(detailMovie?.description || "")
+    const [totalEpiso, setTotalEpiso] = useState(detailMovie?.totalEpiso || "")
+    const [newEpiso, setNewEpiso] = useState(detailMovie?.newEpiso || "")
     const [file, setFile] = useState<string>("")
     const [schedule, setSchedule] = useState(detailMovie?.schedule || "")
 
@@ -40,7 +42,6 @@ export default function ContentAddTopic({ active = false, detailMovie }: { activ
 
     const handleCreateMovie = async () => {
         try {
-            console.log(file)
             const formData = new FormData()
             formData.append('file', file)
             formData.append('name', name)
@@ -86,6 +87,8 @@ export default function ContentAddTopic({ active = false, detailMovie }: { activ
             formData.append('category', category)
             formData.append('schedule', schedule)
             formData.append('time', time)
+            formData.append('totalEpiso', totalEpiso)
+            formData.append('newEpiso', newEpiso)
 
             const response = await updateTopic(id, formData)
             if (response) {
@@ -120,6 +123,8 @@ export default function ContentAddTopic({ active = false, detailMovie }: { activ
         setFile('')
         setSchedule('')
         setHot("false")
+        setNewEpiso('')
+        setTotalEpiso('')
     }
 
     return (
@@ -156,17 +161,32 @@ export default function ContentAddTopic({ active = false, detailMovie }: { activ
                             <ComboboxForm datas={booleanDates} schedule={finish} setSchedule={setFinish} />
                         </div>
                     </div>
-                    <div className="mb-5.5">
-                        <label className="mb-3 mt-3 block text-sm font-medium text-black dark:text-white" htmlFor="Hot">Hot</label>
-                        <div className="relative">
-                            <ComboboxForm datas={booleanDates} schedule={hot} setSchedule={setHot} />
+                    <div className="mb-5.5 flex flex-col gap-5.5 sm:flex-row">
+                        <div className="w-full sm:w-1/2">
+                            <label className="mb-3 mt-3 block text-sm font-medium text-black dark:text-white" htmlFor="Hot">Hot</label>
+                            <div className="relative">
+                                <ComboboxForm datas={booleanDates} schedule={hot} setSchedule={setHot} />
+                            </div>
+                        </div>
+                        <div className="w-full sm:w-1/2">
+                            <label className="mb-3 mt-3 block text-sm font-medium text-black dark:text-white" htmlFor="Schedule">Schedule</label>
+                            <div className="relative">
+                                <ComboboxForm datas={dateOfWeek} schedule={schedule} setSchedule={setSchedule} />
+                            </div>
                         </div>
                     </div>
-                    <div className="mb-5.5">
-                        <label className="mb-3 mt-3 block text-sm font-medium text-black dark:text-white" htmlFor="Schedule">Schedule</label>
-                        <div className="relative">
-                            <ComboboxForm datas={dateOfWeek} schedule={schedule} setSchedule={setSchedule} />
+                    <div className="mb-5.5 flex flex-col gap-5.5 sm:flex-row">
+                        <div className="w-full sm:w-1/2">
+                            <label className="mb-3 mt-3 block text-sm font-medium text-black dark:text-white" htmlFor="totalEpiso">totalEpiso</label>
+                            <div className="relative">
+
+                                <input className="p-2 w-full rounded border border-stroke bg-gray py-3 pl-11.5 pr-[4.5px] text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
+                                    id="totalEpiso" type="text" value={totalEpiso} onChange={(e) => setTotalEpiso(e.target.value)} name="totalEpiso" />
+                            </div>
                         </div>
+                        <div className="w-full sm:w-1/2"><label className="mb-3 mt-3 block text-sm font-medium text-black dark:text-white" htmlFor="newEpiso">newEpiso</label>
+                            <input className="p-2 w-full rounded border border-stroke bg-gray px-[4.5px] py-3 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
+                                id="newEpiso" type="text" name="newEpiso" value={newEpiso} onChange={(e) => setNewEpiso(e.target.value)} /></div>
                     </div>
                     <div className="mb-5.5">
                         <label className="mb-3 mt-3 block text-sm font-medium text-black dark:text-white" htmlFor="image">image</label>
