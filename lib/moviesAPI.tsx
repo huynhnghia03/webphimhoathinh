@@ -60,7 +60,7 @@ export async function getMovieBySlugRelation(slug: string) {
 }
 
 export async function getHotMovie() {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/topic/hotMovie`, { next: { revalidate: 120 } });
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/topic/hotMovie`, { next: { revalidate: 3600 } });
     if (!res.ok) {
         return notFound();
     }
