@@ -36,7 +36,23 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="vi">
-
+      <head>
+        {/* Thêm mã theo dõi Google Analytics vào đây */}
+        <script
+          async
+          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_TRACKING_ID}`}
+        ></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', '${process.env.NEXT_PUBLIC_GA_TRACKING_ID}');
+            `,
+          }}
+        />
+      </head>
       <body className={`${inter.className} bg-[#4b4b4b]`}>
         <div className="w-full bg-[#232329] md:px-8 lg:px-16 xl:px-32">
           <Navbar />
