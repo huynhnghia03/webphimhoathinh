@@ -1,4 +1,5 @@
 'use server'
+import { Movie } from '@/common/dataTopicDto';
 import { cookies } from 'next/headers'
 import { notFound } from "next/navigation";
 
@@ -75,7 +76,9 @@ export async function getEpisoden(slug: string, episoden: string) {
             return notFound();
         }
 
-        return res.json();
+        const data = await res.json();
+        return data as Movie;
+
     } catch (error) {
         return notFound();
     }
