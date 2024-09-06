@@ -7,7 +7,7 @@ import "./globals.css";
 import { Navbar, Footer } from "@/components/layout";
 import { Toaster } from "@/components/ui/toaster"
 import GlobalEffects from "./GlobalEffects";
-
+import Script from "next/script";
 const inter = Inter({ subsets: ["latin"] });
 
 // export const metadata: Metadata = {
@@ -36,23 +36,23 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="vi">
-      <head>
-        {/* Thêm mã theo dõi Google Analytics vào đây */}
-        <script
-          async
-          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_TRACKING_ID}`}
-        ></script>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', '${process.env.NEXT_PUBLIC_GA_TRACKING_ID}');
-            `,
-          }}
-        />
-      </head>
+{process.env.NODE_ENV === "production" && (
+          <>
+            {/* Thêm thẻ Google Analytics */}
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_TRACKING_ID}`}
+              strategy="afterInteractive"
+            />
+            <Script id="google-analytics" strategy="afterInteractive">
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${process.env.NEXT_PUBLIC_GA_TRACKING_ID}');
+              `}
+            </Script>
+          </>
+        )}
       <body className={`${inter.className} bg-[#4b4b4b]`}>
         <div className="w-full bg-[#232329] md:px-8 lg:px-16 xl:px-32">
           <Navbar />
