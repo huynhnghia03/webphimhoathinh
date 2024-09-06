@@ -15,14 +15,14 @@ export default function ContentCreateVideo({ slug, getDetailTopic, activeUpdate 
 
     const handleSubmit = async () => {
         try {
-            const data = {
-                tiltle: title,
-                description,
-                episoden,
-                urlVideo,
-                slug: "",
-                thumbImg: ""
-            };
+            // const data = {
+            //     tiltle: title,
+            //     description,
+            //     episoden,
+            //     urlVideo,
+            //     slug: "",
+            //     thumbImg: ""
+            // };
             const formData = new FormData()
             formData.append('file', video)
             formData.append('tiltle', title)
@@ -53,15 +53,28 @@ export default function ContentCreateVideo({ slug, getDetailTopic, activeUpdate 
     };
     const handleUpdateVideo = async () => {
         try {
-            const data = {
-                tiltle: title,
-                description,
-                episoden,
-                urlVideo,
-                slug: "",
-                thumbImg: ""
+            // const data = {
+            //     tiltle: title,
+            //     description,
+            //     episoden,
+            //     urlVideo,
+            //     slug: "",
+            //     thumbImg: ""
+            // }
+            const formData = new FormData()
+            formData.append('file', video)
+            formData.append('tiltle', title)
+            formData.append('description', description)
+            formData.append('episoden', episoden)
+            if (video) {
+                formData.append('file', video)
+            } else {
+                formData.append('urlVideo', urlVideo)
             }
-            const response = await updateVideo(getDetailTopic?.id || "", data)
+
+            formData.append('slug', "")
+            formData.append('thumbImg', "")
+            const response = await updateVideo(getDetailTopic?.id || "", formData)
             if (response) {
                 toast({
                     title: "updated successfull",

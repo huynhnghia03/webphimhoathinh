@@ -3,7 +3,7 @@ import { cookies } from 'next/headers'
 import { notFound } from "next/navigation";
 
 export async function getMovies(id?: number) {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/topic/AllTopics/${id || 1}`, { next: { revalidate: 30 } });
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/topic/AllTopics/${id || 1}`, { next: { revalidate: 3 } });
     if (!res.ok) {
         return notFound();
     }
@@ -11,7 +11,7 @@ export async function getMovies(id?: number) {
 }
 
 export async function getSchedules() {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/topic/getSchedules`, { next: { revalidate: 30 } });
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/topic/getSchedules`, { next: { revalidate: 3 } });
     if (!res.ok) {
         return notFound();
     }
@@ -20,7 +20,7 @@ export async function getSchedules() {
 
 export async function getMovieById(slug: string) {
     try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/topic/${slug}/detail`, { next: { revalidate: 5 } });
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/topic/${slug}/detail`, { next: { revalidate: 0.5 } });
 
         if (!res.ok) {
             // Handle HTTP errors based on status codes
@@ -151,13 +151,12 @@ export async function deleteTopic(id: string) {
     }
 }
 
-export async function createVideo(id: string, episoden: any) {
+export async function createVideo(id: string, episoden: FormData) {
     try {
         const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/episoden/${id}/create`, {
             method: 'POST',
-            credentials: 'include',
             headers: {
-
+                // 'Content-Type': 'multipart/form-data',
                 'Authorization': `Bearer ${cookies().get('user_token')?.value}`
             },
             body: episoden,
@@ -171,16 +170,14 @@ export async function createVideo(id: string, episoden: any) {
     }
 }
 
-export async function updateVideo(id: string, episoden: any) {
+export async function updateVideo(id: string, episoden: FormData) {
     try {
         const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/episoden/${id}/update`, {
-            method: 'POST',
-            credentials: 'include',
+            method: 'Post',
             headers: {
-                'Content-Type': 'application/json',
                 'Authorization': `Bearer ${cookies().get('user_token')?.value}`
             },
-            body: JSON.stringify(episoden),
+            body: episoden,
         });
         if (!res.ok) {
             return notFound();
