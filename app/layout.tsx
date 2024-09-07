@@ -8,6 +8,7 @@ import { Navbar, Footer } from "@/components/layout";
 import { Toaster } from "@/components/ui/toaster"
 import GlobalEffects from "./GlobalEffects";
 import Script from "next/script";
+
 const inter = Inter({ subsets: ["latin"] });
 
 // export const metadata: Metadata = {
@@ -16,7 +17,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 // };
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_API_FRONTEND || "/"), // Thay đổi 'https://your-domain.com' thành domain của bạn
+  metadataBase: new URL(process.env.NEXT_PUBLIC_API_FRONTEND || "/"), 
   title: 'Hoạt Hình Trung Quốc 3D',
   description: 'Tổng hợp DORAEMON | HHTQ 3D | Hoạt Hình Trung Quốc 3D - Chinese Animation 3D - CN Animation 3D HD Vietsub, mới nhất 2024 cập nhật hàng ngày...',
   openGraph: {
@@ -36,16 +37,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="vi">
-{process.env.NODE_ENV === "production" && (
-          <>
-            {/* Thêm thẻ Google Analytics */}
-            <Script
-              src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_TRACKING_ID}`}
-              strategy="afterInteractive"
-            />
-            <Script id="google-analytics" strategy="afterInteractive">
-              {`
-                window.dataLayer = window.dataLayer || [];
+      {process.env.NODE_ENV === "production" && (
+        <>
+          <Script
+            src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_TRACKING_ID}`}
+            strategy="afterInteractive"
+          />
+          <Script id="google-analytics" strategy="afterInteractive">
+            {`
+               window.dataLayer = window.dataLayer || [];
                 function gtag(){dataLayer.push(arguments);}
                 gtag('js', new Date());
                 gtag('config', '${process.env.NEXT_PUBLIC_GA_TRACKING_ID}');
