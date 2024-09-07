@@ -4,7 +4,7 @@ import { cookies } from 'next/headers'
 import { notFound } from "next/navigation";
 
 export async function getMovies(id?: number) {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/topic/AllTopics/${id || 1}`, { next: { revalidate: 20 } });
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/topic/AllTopics/${id || 1}`, { next: { revalidate: 30 } });
     if (!res.ok) {
         return notFound();
     }
@@ -12,7 +12,7 @@ export async function getMovies(id?: number) {
 }
 
 export async function getSchedules() {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/topic/getSchedules`, { next: { revalidate: 20 } });
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/topic/getSchedules`, { next: { revalidate: 30 } });
     if (!res.ok) {
         return notFound();
     }
@@ -21,7 +21,7 @@ export async function getSchedules() {
 
 export async function getMovieById(slug: string) {
     try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/topic/${slug}/detail`, { next: { revalidate: 10 } });
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/topic/${slug}/detail`, { next: { revalidate: 2 } });
 
         if (!res.ok) {
             // Handle HTTP errors based on status codes
@@ -70,7 +70,7 @@ export async function getHotMovie() {
 
 export async function getEpisoden(slug: string, episoden: string) {
     try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/episoden/${slug}/${episoden}`);
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/episoden/${slug}/${episoden}`, { next: { revalidate: 30 } });
 
         if (!res.ok) {
             return notFound();

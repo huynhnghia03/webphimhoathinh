@@ -5,25 +5,26 @@ import { getMovies } from "@/lib/moviesAPI";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-// export async function generateStaticParams() {
-//     const { totalPage } = await getMovies();
-
-//     const params = [];
-
-//     for (let i = 1; i <= totalPage; i++) {
-//         params.push({ number: i.toString() }); // Here, you generate params with 1-indexed pages
-//     }
-
-//     return params;
-// }
 export const metadata: Metadata = {
     title: "Hoạt Hình Trung Quốc 3D",
     description: "Tổng hợp DORAEMON | HHTQ 3D | Hoạt Hình Trung Quốc 3D - Chinese Animation 3D - CN Animation 3D HD Vietsub, mới nhất 2024 cập nhật hàng ngày...",
 
 };
 
-export default async function AllFilm({ params }: { params: { number: number } }) {
-    const page = params.number; // Convert 1-indexed to 0-indexed
+// export async function generateStaticParams() {
+//     // const { totalPage } = await getMovies();
+
+//     const params = [];
+
+//     for (let i = 1; i <= 5; i++) {
+//         params.push({ number: i.toString() }); // Here, you generate params with 1-indexed pages
+//     }
+
+//     return params;
+// }
+export default async function AllFilm({ params }: { params: { number: string } }) {
+    console.log(params)
+    const page = parseInt(params.number); // Convert 1-indexed to 0-indexed
     if (page < 0) {
         return notFound();
     }
