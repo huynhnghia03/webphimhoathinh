@@ -1,7 +1,22 @@
+// import { Movie } from "@/common/dataTopicDto";
 import ContentDetail from "@/components/layout/components/contentFilm/ContentDetail";
-import { getMovieById } from "@/lib/moviesAPI";
+import { getMovieById, getMovies } from "@/lib/moviesAPI";
 import { Metadata, ResolvingMetadata } from "next";
 import { notFound } from 'next/navigation';
+
+
+// export async function generateStaticParams() {
+//     const { datas } = await getMovies();
+//     // console.log(datas)
+
+//     return {
+//         paths: datas.map((movie: Movie) => ({
+//             params: { slug: movie.slug, detailTopic: movie }, // Assumes `slug` is a property of `Movie`
+//         })),
+//         fallback: 'blocking', // Sử dụng blocking để tạo trang cho các đường dẫn chưa được xây dựng
+//     };
+// }
+
 
 export async function generateMetadata(
     { params }: { params: { slug: string } },
@@ -36,12 +51,14 @@ export async function generateMetadata(
 }
 
 async function DetailFilm({ params }: { params: { slug: string } }) {
-    const detailMovie = await getMovieById(params.slug);
-    if (!detailMovie) {
+    // console.log('params.slug,', params.slug)
+    const detailEpisoden = await getMovieById(params.slug);
+    if (!detailEpisoden) {
         return notFound();
     }
 
-    return <ContentDetail detailMovie={detailMovie} />;
+
+    return <ContentDetail detailMovie={detailEpisoden} />;
 }
 
 export default DetailFilm;
