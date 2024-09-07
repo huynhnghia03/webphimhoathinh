@@ -1,30 +1,30 @@
-// import { Movie } from "@/common/dataTopicDto";
+import { Movie } from "@/common/dataTopicDto";
 import ContentDetail from "@/components/layout/components/contentFilm/ContentDetail";
 import { getMovieById, getMovies } from "@/lib/moviesAPI";
 import { Metadata, ResolvingMetadata } from "next";
 import { notFound } from 'next/navigation';
 
-
+// This function is used to generate static paths
 // export async function generateStaticParams() {
-//     const { datas } = await getMovies();
-//     // console.log(datas)
+//     const { datas } = await getMovies()
 
-//     return {
-//         paths: datas.map((movie: Movie) => ({
-//             params: { slug: movie.slug, detailTopic: movie }, // Assumes `slug` is a property of `Movie`
-//         })),
-//         fallback: 'blocking', // Sử dụng blocking để tạo trang cho các đường dẫn chưa được xây dựng
-//     };
+//     return datas.map((post: Movie) => {
+//         return {
+//             slug: post.slug.toString(),
+//         };
+//     });
 // }
 
-
+// This function generates metadata for each page
 export async function generateMetadata(
     { params }: { params: { slug: string } },
     parent: ResolvingMetadata
 ): Promise<Metadata> {
-    const detailEpisoden = await getMovieById(params.slug);
+    const { datas } = await getMovies()
+    // const detailMovie = await getMovieById(params.slug);
+    const detail = datas.find((val: Movie) => val.slug == params.slug)
 
-    if (!detailEpisoden) {
+    if (!detail) {
         return {
             title: "Not Found",
             description: "Movie not found",
@@ -32,33 +32,33 @@ export async function generateMetadata(
     }
 
     return {
-        title: `${detailEpisoden.name} | ${detailEpisoden.category}`,
-        description: detailEpisoden.description,
+        title: `${detail.name} | ${detail.category}`,
+        description: detail.description,
         openGraph: {
-            title: detailEpisoden.name,
-            description: detailEpisoden.description,
+            title: detail.name,
+            description: detail.description,
             url: `/${params.slug}`,
             images: [
                 {
-                    url: detailEpisoden.imageUrl || "/logo",
+                    url: "/" + detail.imageUrl || "/logo",
                     width: 800,
                     height: 600,
-                    alt: detailEpisoden.name,
+                    alt: detail.name,
                 },
             ],
         },
     };
 }
 
-async function DetailFilm({ params }: { params: { slug: string } }) {
-    // console.log('params.slug,', params.slug)
-    const detailEpisoden = await getMovieById(params.slug);
-    if (!detailEpisoden) {
+// This is your page component
+export default async function DetailFilm({ params }: { params: { slug: string } }) {
+    console.log('Received params in Page:', params);
+    const { datas } = await getMovies()
+    // const detailMovie = await getMovieById(params.slug);
+    const detail = datas.find((val: Movie) => val.slug == params.slug)
+    console.log('Fetched movie details:', detail);
+    if (!detail) {
         return notFound();
     }
-
-
-    return <ContentDetail detailMovie={detailEpisoden} />;
+    return <ContentDetail detailMovie={detail} />;
 }
-
-export default DetailFilm;

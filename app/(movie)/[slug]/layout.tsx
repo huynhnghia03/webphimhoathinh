@@ -1,7 +1,12 @@
+import { Movie } from "@/common/dataTopicDto";
 import SideBar from "@/components/layout/Sidebar";
+import { getMovies } from "@/lib/moviesAPI";
 import React from "react";
+
+
+
 export default function MovieLayout({
-  children,
+  children
 }: Readonly<{
   children: React.ReactNode;
 }>) {
