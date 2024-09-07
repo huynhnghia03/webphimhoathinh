@@ -1,3 +1,4 @@
+"use client"
 import { Movie } from "@/common/dataTopicDto";
 import EpisodenFilm from "@/components/layout/components/contentFilm/episodenFilm";
 import { Button } from "@/components/ui/button";
@@ -6,8 +7,7 @@ import { Clock } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import VideoEncrypt from "./videoEncrypt";
-
-async function ContentDetail({ detailMovie, episoden = false }: { detailMovie: Movie, episoden?: boolean }) {
+function ContentDetail({ detailMovie, episoden = false }: { detailMovie: Movie, episoden?: boolean }) {
     return (
         <div >
             <div className="flex flex-col">
