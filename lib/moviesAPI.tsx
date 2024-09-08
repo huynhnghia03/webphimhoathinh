@@ -21,7 +21,7 @@ export async function getSchedules() {
 
 export async function getMovieById(slug: string) {
     try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/topic/${slug}/detail`, { next: { revalidate: 2 } });
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/topic/${slug}/detail`, { next: { revalidate: 30 } });
 
         if (!res.ok) {
             // Handle HTTP errors based on status codes
