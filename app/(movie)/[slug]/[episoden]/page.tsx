@@ -18,15 +18,15 @@ export async function generateMetadata(
     }
 
     return {
-        title: `${detailEpisoden.name} | Tập ${params.episoden} | ${detailEpisoden.category}`,
-        description: detailEpisoden.description,
+        title: `${detailEpisoden.name} | ${detailEpisoden.episodens[0].tiltle} | ${detailEpisoden.category}`,
+        description: `Xem phim ${detailEpisoden.name} ${detailEpisoden.episodens[0].tiltle} vietsub ${detailEpisoden.episodens[0].description}`,
         openGraph: {
-            title: `${detailEpisoden.name} | Tập ${params.episoden} | ${detailEpisoden.category}`,
-            description: detailEpisoden.description,
+            title: `${detailEpisoden.name} | ${detailEpisoden.episodens[0].tiltle} | ${detailEpisoden.category}`,
+            description: `Xem phim ${detailEpisoden.name} ${detailEpisoden.episodens[0].tiltle} vietsub ${detailEpisoden.episodens[0].description}`,
             url: `/${params.slug}/${params.episoden}`,
             images: [
                 {
-                    url: detailEpisoden.image || "/logo.png",
+                    url: "/" + detailEpisoden.image || "/logo.png",
                     width: 800,
                     height: 600,
                     alt: detailEpisoden.name,
