@@ -52,11 +52,8 @@ export async function generateMetadata(
 
 // This is your page component
 export default async function DetailFilm({ params }: { params: { slug: string } }) {
-    console.log('Received params in Page:', params);
     const { datas } = await getMovies()
-    // const detailMovie = await getMovieById(params.slug);
     const detail = datas.find((val: Movie) => val.slug == params.slug)
-    console.log('Fetched movie details:', detail);
     if (!detail) {
         return notFound();
     }
