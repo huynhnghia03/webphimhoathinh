@@ -20,8 +20,8 @@ export async function generateMetadata(
     { params }: { params: { slug: string } },
     parent: ResolvingMetadata
 ): Promise<Metadata> {
-    const { datas } = await getMovies()
-    const detailMovie = await getMovieById(params.slug);
+    const { datas } = await getMovies(); // Lấy tất cả các phim
+    const detailMovie = await getMovieById(params.slug); // Lấy chi tiết phim theo slug
 
     if (!detailMovie) {
         return {
@@ -29,18 +29,22 @@ export async function generateMetadata(
             description: "Movie not found",
         };
     }
-    const detail = datas.find((val: Movie) => val.slug == detailMovie.slug)
+
+    // Tìm phim theo slug từ danh sách datas
+    const detail = datas.find((val: Movie) => val.slug === detailMovie.slug);
+
+    // Nếu không tìm thấy, trả về metadata mặc định
     if (!detail) {
         return {
             title: `${detailMovie.name} | Tập ${detailMovie.newEpiso} | ${detailMovie.category}`,
-            description: `Xem phim ${detailMovie.name} Tập mói nhất ${detailMovie.newEpiso} vietsub ${detailMovie.description}`,
+            description: `Xem phim ${detailMovie.name} Tập mới nhất ${detailMovie.newEpiso} vietsub ${detailMovie.description}`,
             openGraph: {
                 title: `${detailMovie.name} | Tập ${detailMovie.newEpiso} | ${detailMovie.category}`,
                 description: `Xem phim ${detailMovie.name} Tập mới nhất ${detailMovie.newEpiso} vietsub ${detailMovie.description}`,
                 url: `/${params.slug}`,
                 images: [
                     {
-                        url: "/" + detailMovie.imageUrl || "/logo.png",
+                        url: detailMovie.image ? `/${detailMovie.image}` : "/logo.png", // Fallback to logo.png
                         width: 800,
                         height: 600,
                         alt: detailMovie.name,
@@ -49,16 +53,18 @@ export async function generateMetadata(
             },
         };
     }
+
+    // Trường hợp tìm thấy chi tiết trong dữ liệu
     return {
         title: `${detail.name} | Tập ${detail.newEpiso} | ${detail.category}`,
-        description: `Xem phim ${detail.name} Tập mói nhất ${detail.newEpiso} vietsub ${detail.description}`,
+        description: `Xem phim ${detail.name} Tập mới nhất ${detail.newEpiso} vietsub ${detail.description}`,
         openGraph: {
             title: `${detail.name} | Tập ${detail.newEpiso} | ${detail.category}`,
             description: `Xem phim ${detail.name} Tập mới nhất ${detail.newEpiso} vietsub ${detail.description}`,
             url: `/${params.slug}`,
             images: [
                 {
-                    url: "/" + detail.imageUrl || "/logo.png",
+                    url: detail.image ? `/${detail.image}` : "/logo.png", // Fallback to logo.png
                     width: 800,
                     height: 600,
                     alt: detail.name,

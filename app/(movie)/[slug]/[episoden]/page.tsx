@@ -17,16 +17,21 @@ export async function generateMetadata(
         };
     }
 
+    // Safely access the title and description, and provide fallbacks
+    const episodeTitle = detailEpisoden?.episodens[0]?.tiltle ?? params.episoden;
+    const episodeDescription = detailEpisoden?.episodens[0]?.description ?? "Xem tập mới nhất";
+    const imageUrl = detailEpisoden?.image ? `/${detailEpisoden.image}` : "/logo.png"; // Ensure image URL is properly formatted
+
     return {
-        title: `${detailEpisoden.name} | ${detailEpisoden?.episodens[0]?.tiltle ?? params.episoden} | ${detailEpisoden.category}`,
-        description: `Xem phim ${detailEpisoden.name} ${detailEpisoden?.episodens[0]?.tiltle ?? params.episoden} vietsub ${detailEpisoden?.episodens[0]?.description}`,
+        title: `${detailEpisoden.name} | ${episodeTitle} | ${detailEpisoden.category}`,
+        description: `Xem phim ${detailEpisoden.name} ${episodeTitle} vietsub ${episodeDescription}`,
         openGraph: {
-            title: `${detailEpisoden.name} | ${detailEpisoden?.episodens[0]?.tiltle ?? params.episoden} | ${detailEpisoden.category}`,
-            description: `Xem phim ${detailEpisoden.name} ${detailEpisoden?.episodens[0]?.tiltle ?? params.episoden} vietsub ${detailEpisoden?.episodens[0]?.description}`,
+            title: `${detailEpisoden.name} | ${episodeTitle} | ${detailEpisoden.category}`,
+            description: `Xem phim ${detailEpisoden.name} ${episodeTitle} vietsub ${episodeDescription}`,
             url: `/${params.slug}/${params.episoden}`,
             images: [
                 {
-                    url: "/" + detailEpisoden.image || "/logo.png",
+                    url: imageUrl,
                     width: 800,
                     height: 600,
                     alt: detailEpisoden.name,

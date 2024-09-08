@@ -29,6 +29,7 @@ export const BentoGridItem = ({
     image,
     episoden,
     slug,
+    isEnd,
     header,
     icon,
 }: {
@@ -37,6 +38,7 @@ export const BentoGridItem = ({
     description?: string | React.ReactNode;
     image?: string;
     slug?: string;
+    isEnd?: boolean;
     episoden?: string;
     header?: React.ReactNode;
     icon?: React.ReactNode;
@@ -63,7 +65,7 @@ export const BentoGridItem = ({
                 </div>
                 <div className=" text-sm p-1 rounded-lg font-bold absolute -top-3 left-2 bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 
                     background-animate">
-                    Tập {episoden}
+                    Tập {episoden} {isEnd ? "End" : ""}
                 </div>
                 <div className={`font-sans font-bold text-white w-[100%] mb-2 absolute bottom-0 pt-[80px] truncate whitespace-nowrap ${style.backgroun_gradient} `} >
                     <div className="mb-3 ml-2 text-sm">
