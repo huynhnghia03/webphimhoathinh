@@ -21,16 +21,34 @@ export async function generateMetadata(
     parent: ResolvingMetadata
 ): Promise<Metadata> {
     const { datas } = await getMovies()
-    // const detailMovie = await getMovieById(params.slug);
-    const detail = datas.find((val: Movie) => val.slug == params.slug)
+    const detailMovie = await getMovieById(params.slug);
 
-    if (!detail) {
+    if (!detailMovie) {
         return {
             title: "Not Found",
             description: "Movie not found",
         };
     }
-
+    const detail = datas.find((val: Movie) => val.slug == detailMovie.slug)
+    if (!detail) {
+        return {
+            title: `${detailMovie.name} | Tập ${detailMovie.newEpiso} | ${detailMovie.category}`,
+            description: `Xem phim ${detailMovie.name} Tập mói nhất ${detailMovie.newEpiso} vietsub ${detailMovie.description}`,
+            openGraph: {
+                title: `${detailMovie.name} | Tập ${detailMovie.newEpiso} | ${detailMovie.category}`,
+                description: `Xem phim ${detailMovie.name} Tập mới nhất ${detailMovie.newEpiso} vietsub ${detailMovie.description}`,
+                url: `/${params.slug}`,
+                images: [
+                    {
+                        url: "/" + detailMovie.imageUrl || "/logo.png",
+                        width: 800,
+                        height: 600,
+                        alt: detailMovie.name,
+                    },
+                ],
+            },
+        };
+    }
     return {
         title: `${detail.name} | Tập ${detail.newEpiso} | ${detail.category}`,
         description: `Xem phim ${detail.name} Tập mói nhất ${detail.newEpiso} vietsub ${detail.description}`,
@@ -53,9 +71,14 @@ export async function generateMetadata(
 // This is your page component
 export default async function DetailFilm({ params }: { params: { slug: string } }) {
     const { datas } = await getMovies()
-    const detail = datas.find((val: Movie) => val.slug == params.slug)
-    if (!detail) {
+    const detailMovie = await getMovieById(params.slug);
+    if (!detailMovie) {
         return notFound();
     }
+    const detail = datas.find((val: Movie) => val.slug == detailMovie.slug)
+    if (!detail) {
+        return <ContentDetail detailMovie={detailMovie} />;
+    }
     return <ContentDetail detailMovie={detail} />;
+
 }
