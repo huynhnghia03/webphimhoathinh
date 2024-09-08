@@ -14,6 +14,7 @@ export default function GridContent({ movies }: { movies: Movie[] }) {
                     description={item.description}
                     image={item.image}
                     slug={item.slug}
+                    isEnd={item.finish}
                 // className={i === 3 || i === 6 ? "md:col-span-2" : ""}
                 />
             ))}
