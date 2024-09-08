@@ -32,15 +32,15 @@ export async function generateMetadata(
     }
 
     return {
-        title: `${detail.name} | ${detail.category}`,
-        description: detail.description,
+        title: `${detail.name} | Tập ${detail.newEpiso} | ${detail.category}`,
+        description: `Xem phim ${detail.name} Tập mói nhất ${detail.newEpiso} vietsub ${detail.description}`,
         openGraph: {
-            title: detail.name,
-            description: detail.description,
+            title: `${detail.name} | Tập ${detail.newEpiso} | ${detail.category}`,
+            description: `Xem phim ${detail.name} Tập mới nhất ${detail.newEpiso} vietsub ${detail.description}`,
             url: `/${params.slug}`,
             images: [
                 {
-                    url: "/" + detail.imageUrl || "/logo",
+                    url: "/" + detail.imageUrl || "/logo.png",
                     width: 800,
                     height: 600,
                     alt: detail.name,
