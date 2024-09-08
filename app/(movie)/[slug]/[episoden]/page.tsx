@@ -18,11 +18,11 @@ export async function generateMetadata(
     }
 
     return {
-        title: `${detailEpisoden.name} | ${detailEpisoden.episodens[0].tiltle} | ${detailEpisoden.category}`,
-        description: `Xem phim ${detailEpisoden.name} ${detailEpisoden.episodens[0].tiltle} vietsub ${detailEpisoden.episodens[0].description}`,
+        title: `${detailEpisoden.name} | ${detailEpisoden?.episodens[0]?.tiltle ?? params.episoden} | ${detailEpisoden.category}`,
+        description: `Xem phim ${detailEpisoden.name} ${detailEpisoden?.episodens[0]?.tiltle ?? params.episoden} vietsub ${detailEpisoden?.episodens[0]?.description}`,
         openGraph: {
-            title: `${detailEpisoden.name} | ${detailEpisoden.episodens[0].tiltle} | ${detailEpisoden.category}`,
-            description: `Xem phim ${detailEpisoden.name} ${detailEpisoden.episodens[0].tiltle} vietsub ${detailEpisoden.episodens[0].description}`,
+            title: `${detailEpisoden.name} | ${detailEpisoden?.episodens[0]?.tiltle ?? params.episoden} | ${detailEpisoden.category}`,
+            description: `Xem phim ${detailEpisoden.name} ${detailEpisoden?.episodens[0]?.tiltle ?? params.episoden} vietsub ${detailEpisoden?.episodens[0]?.description}`,
             url: `/${params.slug}/${params.episoden}`,
             images: [
                 {
