@@ -78,18 +78,17 @@ export default function RootLayout({
           })();
         `}
             </Script>
-            {/* Mã quảng cáo PopAds */}
             <Script
-        src="https://dibsemey.com/act/files/tag.min.js?z=8071962"
-        data-cfasync="false"
-        async
-      />
+              src="https://dibsemey.com/act/files/tag.min.js?z=8071962"
+              data-cfasync="false"
+              async
+            />
 
-      <Script
-        id="custom-script"
-        strategy="afterInteractive"
-      >
-        {`
+            <Script
+              id="custom-script"
+              strategy="afterInteractive"
+            >
+              {`
           (function(d,z,s){
             s.src='https://'+d+'/400/'+z;
             try{
@@ -97,8 +96,7 @@ export default function RootLayout({
             } catch(e){}
           })('aupoafto.com',8071969,document.createElement('script'));
         `}
-      </Script>
-
+            </Script>
           </>
         )}
         <body className={`${inter.className} bg-[#4b4b4b]`}>
