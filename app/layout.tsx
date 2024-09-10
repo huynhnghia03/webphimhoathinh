@@ -79,6 +79,25 @@ export default function RootLayout({
         `}
             </Script>
             {/* Mã quảng cáo PopAds */}
+            <Script
+        src="https://dibsemey.com/act/files/tag.min.js?z=8071962"
+        data-cfasync="false"
+        async
+      />
+
+      <Script
+        id="custom-script"
+        strategy="afterInteractive"
+      >
+        {`
+          (function(d,z,s){
+            s.src='https://'+d+'/400/'+z;
+            try{
+              (document.body||document.documentElement).appendChild(s);
+            } catch(e){}
+          })('aupoafto.com',8071969,document.createElement('script'));
+        `}
+      </Script>
 
           </>
         )}
