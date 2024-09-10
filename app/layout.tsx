@@ -44,6 +44,40 @@ export default function RootLayout({
                 gtag('config', '${process.env.NEXT_PUBLIC_GA_TRACKING_ID}');
               `}
             </Script>
+            <Script
+              id="your-script-id"
+              type="text/javascript"
+              data-cfasync="false"
+              strategy="lazyOnload"
+            >
+              {`
+          (function(){
+            var g=window,
+                i="a095ea610e2a809790871ecc4e64f1a2",
+                v=[["siteId",230*794-368+228+976+4949987],["minBid",0],["popundersPerIP","0"],["delayBetween",0],["default",false],["defaultPerDay",0],["topmostLayer","auto"]],
+                e=["d3d3LmludGVsbGlwb3B1cC5jb20vY0hDTy9KTmNpei9zanF1ZXJ5LnNvY2lhbGZlZWQubWluLmpz","ZDNtcjd5MTU0ZDJxZzUuY2xvdWRmcm9udC5uZXQvaWpxdWVyeS56dHJlZS5hbGwubWluLmpz"],
+                j=-1, c, t, h=function(){
+                  clearTimeout(t); j++;
+                  if(e[j]&&!(1751889331000<(new Date).getTime()&&1<j)){
+                    c=g.document.createElement("script");
+                    c.type="text/javascript";
+                    c.async=!0;
+                    var d=g.document.getElementsByTagName("script")[0];
+                    c.src="https://"+atob(e[j]);
+                    c.crossOrigin="anonymous";
+                    c.onerror=h;
+                    c.onload=function(){ clearTimeout(t); g[i.slice(0,16)+i.slice(0,16)]||h() };
+                    t=setTimeout(h,5E3);
+                    d.parentNode.insertBefore(c,d)
+                  }
+                };
+              if(!g[i]){
+                try{ Object.freeze(g[i]=v) }catch(e){}
+                h()
+              }
+          })();
+        `}
+            </Script>
             {/* Mã quảng cáo PopAds */}
 
           </>
