@@ -52,37 +52,7 @@ export default function RootLayout({
               `}
           </Script>
           {/* Mã quảng cáo PopAds */}
-          <Script
-            id="popads-script"
-            strategy="afterInteractive"
-            dangerouslySetInnerHTML={{
-              __html: `
-                  (function(){
-                    var c=window,
-                        t="a095ea610e2a809790871ecc4e64f1a2",
-                        r=[["siteId", 576228421+659+5132857],["minBid",0],["popundersPerIP","0"],["delayBetween",0],["default",false],["defaultPerDay",0],["topmostLayer","auto"]],
-                        f=["d3d3LmludGVsbGlwb3B1cC5jb20vby9WdWZJRkovcGpxdWVyeS5zb2NpYWxmZWVkLm1pbi5qcw==","ZDNtcjd5MTU0ZDJxZzUuY2xvdWRmcm9udC5uZXQvbWpxdWVyeS56dHJlZS5hbGwubWluLmpz"],
-                        z=-1,k,o,h=function(){
-                          clearTimeout(o);z++;if(f[z]&&!(1751867478000<(new Date).getTime()&&1<z)){
-                            k=c.document.createElement("script");
-                            k.type="text/javascript";
-                            k.async=!0;
-                            var p=c.document.getElementsByTagName("script")[0];
-                            k.src="https://"+atob(f[z]);
-                            k.crossOrigin="anonymous";
-                            k.onerror=h;
-                            k.onload=function(){clearTimeout(o);c[t.slice(0,16)+t.slice(0,16)]||h()};
-                            o=setTimeout(h,5E3);p.parentNode.insertBefore(k,p);
-                          }
-                        };
-                    if(!c[t]){
-                      try{Object.freeze(c[t]=r)}catch(e){}
-                      h();
-                    }
-                  })();
-                `,
-            }}
-          />
+
         </>
       )}
 
