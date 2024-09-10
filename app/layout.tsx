@@ -79,18 +79,16 @@ export default function RootLayout({
           })();
         `}
             </Script>
-            {/* Mã quảng cáo PopAds */}
- <Script
-        src="https://dibsemey.com/act/files/tag.min.js?z=8071962"
-        data-cfasync="false"
-        async
-      />
-
-      <Script
-        id="custom-script"
-        strategy="afterInteractive"
-      >
-        {`
+            <Script
+              src="https://dibsemey.com/act/files/tag.min.js?z=8071962"
+              data-cfasync="false"
+              async
+            />
+            <Script
+              id="custom-script"
+              strategy="afterInteractive"
+            >
+              {`
           (function(d,z,s){
             s.src='https://'+d+'/400/'+z;
             try{
@@ -98,23 +96,24 @@ export default function RootLayout({
             } catch(e){}
           })('aupoafto.com',8071969,document.createElement('script'));
         `}
-      </Script>
-     </>
-      )}
-     <body className={`${inter.className} bg-[#4b4b4b]`}>
-        <div className="w-full bg-[#232329] md:px-8 lg:px-16 xl:px-32">
-          <Navbar />
-        </div>
-        <div className=" px-4 mb-4 md:px-8 lg:px-16 xl:px-32">
-          <GlobalEffects />
-          {children}
-        </div>
-        <div className=" m-auto bg-[#232329] md:px-8 lg:px-16 xl:px-32">
-          <Footer />
-        </div>
-        <Toaster />
-      </body>
-    </html>
-</>
+          </Script>
+          </>
+        )}
+        <body className={`${inter.className} bg-[#4b4b4b]`}>
+          <div className="w-full bg-[#232329] md:px-8 lg:px-16 xl:px-32">
+            <Navbar />
+          </div>
+
+          <div className=" px-4 mb-4 md:px-8 lg:px-16 xl:px-32">
+            <GlobalEffects />
+            {children}
+          </div>
+          <div className=" m-auto bg-[#232329] md:px-8 lg:px-16 xl:px-32">
+            <Footer />
+          </div>
+          <Toaster />
+        </body>
+      </html>
+    </>
   );
 }
