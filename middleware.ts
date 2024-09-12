@@ -4,11 +4,15 @@ import type { NextRequest } from 'next/server'
 
 const privatePaths = ['/admin/manage-kkhstyw56']
 const authPaths = ['/admin/login-3f72dkwt3']
+const preventPaths = ['index.php', 'server-status', 'wp-login.php'];
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
   const sessionToken = request.cookies.get('user_token')?.value
 
+  if (preventPaths.some((path) => pathname.startsWith(path))) {
+    return NextResponse.redirect(new URL('/', request.url))
+  }
   if (privatePaths.some((path) => pathname.startsWith(path)) && !sessionToken) {
     return NextResponse.redirect(new URL('/admin/login-3f72dkwt3', request.url))
   }
