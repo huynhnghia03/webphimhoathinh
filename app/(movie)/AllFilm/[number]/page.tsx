@@ -11,17 +11,7 @@ export const metadata: Metadata = {
 
 };
 
-// export async function generateStaticParams() {
-//     // const { totalPage } = await getMovies();
 
-//     const params = [];
-
-//     for (let i = 1; i <= 5; i++) {
-//         params.push({ number: i.toString() }); // Here, you generate params with 1-indexed pages
-//     }
-
-//     return params;
-// }
 export default async function AllFilm({ params }: { params: { number: string } }) {
     console.log(params)
     const page = parseInt(params.number); // Convert 1-indexed to 0-indexed
