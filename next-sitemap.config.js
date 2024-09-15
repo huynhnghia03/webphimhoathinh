@@ -1,7 +1,7 @@
 
 /** @type {import('next-sitemap').IConfig} */
 const nextConfig = {
-    siteUrl: process.env.NEXT_PUBLIC_API_SITE, // URL trang web của bạn
+    siteUrl: process.env.NEXT_PUBLIC_API_FRONTEND, // URL trang web của bạn
     generateRobotsTxt: true, // Tạo robots.txt tự động
     sitemapSize: 7000, // Kích thước sitemap
     exclude: ['/admin/**'],
