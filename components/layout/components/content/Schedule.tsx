@@ -20,18 +20,23 @@ export default async function Schedule() {
         { name: "Chủ Nhật", value: "SU" }
     ];
 
+    // Pre-filter schedules for SP once
+    const specialSchedules = schedules.filter(movie => movie.schedule === "SP");
+
     return (
-        <Tabs defaultValue="M" className="w-[100%]">
+        <Tabs defaultValue="M" className="w-full">
             <TabsList className="flex w-full flex-wrap bg-black">
-                {dateOfWeek.map((item, index) => (
-                    <TabsTrigger key={index} value={item.value} className="flex-grow text-center p-2">
-                        {item.name}
+                {dateOfWeek.map(({ name, value }) => (
+                    <TabsTrigger key={value} value={value} className="flex-grow text-center p-2">
+                        {name}
                     </TabsTrigger>
                 ))}
             </TabsList>
-            {dateOfWeek.map((item, index) => (
-                <TabsContent key={index} value={item.value} className="">
-                    <GridContent movies={schedules.filter(movie => movie.schedule === item.value || "SP" === movie.schedule)} />
+            {dateOfWeek.map(({ value }) => (
+                <TabsContent key={value} value={value}>
+                    <GridContent
+                        movies={[...schedules.filter(movie => movie.schedule === value), ...specialSchedules]}
+                    />
                 </TabsContent>
             ))}
         </Tabs>
