@@ -17,14 +17,14 @@ const nextConfig = {
     additionalPaths: async (config) => {
         try {
             const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/topic/AllTopics`, { next: { revalidate: 60 } });
-            const { datas } = await res.json();
-            const allFilmPages = Array.from({ length: Math.ceil(datas.length / 14) }, (_, index) => ({
+            const { dataAll } = await res.json();
+            const allFilmPages = Array.from({ length: Math.ceil(dataAll.length / 14) }, (_, index) => ({
                 loc: `/AllFilm/${index + 1}`,
                 lastmod: new Date().toISOString(),
                 changefreq: 'daily',
                 priority: 0.8,
             }));
-            const episodePaths = datas.map((slug) => {
+            const episodePaths = dataAll.map((slug) => {
                 return Array.from({ length: parseInt(slug.totalEpiso) }, (_, i) => ({
                     loc: `/${slug.slug}/tap-${parseInt(slug.newEpiso) - i}.html`,
                     lastmod: new Date().toISOString(),
@@ -36,7 +36,7 @@ const nextConfig = {
             // Kết hợp tất cả các URL lại thành mảng duy nhất
             const fullPaths = [
                 ...allFilmPages,
-                ...datas.map(slug => ({
+                ...dataAll.map(slug => ({
                     loc: `/${slug.slug}`,
                     lastmod: new Date().toISOString(),
                     changefreq: 'daily',

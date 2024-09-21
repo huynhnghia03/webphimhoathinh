@@ -44,6 +44,9 @@ export default function RootLayout({
                 gtag('config', '${process.env.NEXT_PUBLIC_GA_TRACKING_ID}');
               `}
             </Script>
+          </>
+        )}
+        {/* 
             <Script
               id="your-script-id"
               type="text/javascript"
@@ -98,7 +101,7 @@ export default function RootLayout({
         `}
             </Script>
           </>
-        )}
+        )} */}
         <body className={`${inter.className} bg-[#4b4b4b]`}>
           <div className="w-full bg-[#232329] md:px-8 lg:px-16 xl:px-32">
             <Navbar />
