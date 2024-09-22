@@ -5,15 +5,15 @@ import { Metadata, ResolvingMetadata } from "next";
 import { notFound } from 'next/navigation';
 
 // This function is used to generate static paths
-// export async function generateStaticParams() {
-//     const { datas } = await getDataMovies();
+export async function generateStaticParams() {
+    const { dataAll } = await getDataMovies();
 
-//     return datas.map((post: Movie) => {
-//         return {
-//             slug: post.slug.toString(),
-//         };
-//     });
-// }
+    return dataAll.map((post: Movie) => {
+        return {
+            slug: post.slug.toString(),
+        };
+    });
+}
 
 // This function generates metadata for each page
 export async function generateMetadata(
@@ -56,15 +56,16 @@ export async function generateMetadata(
 // This is your page component
 export default async function DetailFilm({ params }: { params: { slug: string } }) {
     const { datas } = await getMovies(); // Lấy tất cả các phim
-    const { dataAll } = await getDataMovies();
+    // const { dataAll } = await getDataMovies();
     // console.log(dataAll)
-    // const detailID = await getMovieById(params.slug); // Lấy chi tiết phim theo slug
+    const detailID = await getMovieById(params.slug); // Lấy chi tiết phim theo slug
     const detail = datas.find((val: Movie) => val.slug == params.slug)
-    const detail1 = dataAll.find((val: Movie) => val.slug == params.slug)
-    if (!detail1 && !detail) {
+    // const detail1 = dataAll.find((val: Movie) => val.slug == params.slug)
+    if (!detailID && !detail) {
+        console.log("nonoo")
         return notFound();
     }
-    return <ContentDetail detailMovie={detail || detail1} />;
+    return <ContentDetail detailMovie={detail || detailID} />;
 
 
 }
