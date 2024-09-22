@@ -7,16 +7,16 @@ export async function getMovies(id?: number) {
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/topic/AllTopics/${id ?? 1}`,
         {
             // cache: 'no-cache',
-            next: { revalidate: 20 },
+            next: { revalidate: 300 },
         });
-    console.log(res)
+    // console.log(res)
     if (!res.ok) {
         return notFound();
     }
     return res.json();
 }
 export async function getDataMovies() {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/topic/AllTopics`, { next: { revalidate: 20 } });
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/topic/AllTopics`, { next: { revalidate: 600 } });
     if (!res.ok) {
         return notFound();
     }
@@ -24,7 +24,7 @@ export async function getDataMovies() {
 }
 
 export async function getSchedules() {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/topic/getSchedules`, { next: { revalidate: 20 } });
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/topic/getSchedules`, { next: { revalidate: 300 } });
     if (!res.ok) {
         return notFound();
     }
@@ -33,7 +33,7 @@ export async function getSchedules() {
 
 export async function getMovieById(slug: string) {
     try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/topic/${slug}/detail`, { next: { revalidate: 20 } });
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/topic/${slug}/detail`, { next: { revalidate: 300 } });
 
         if (!res.ok) {
             // Handle HTTP errors based on status codes
@@ -82,7 +82,7 @@ export async function getHotMovie() {
 
 export async function getEpisoden(slug: string, episoden: string) {
     try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/episoden/${slug}/${episoden}`, { cache: "no-cache" });
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/episoden/${slug}/${episoden}`, { next: { revalidate: 300 } });
 
         if (!res.ok) {
             return notFound();

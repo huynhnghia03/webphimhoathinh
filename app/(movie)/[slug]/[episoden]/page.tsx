@@ -44,7 +44,7 @@ export async function generateMetadata(
 async function Episoden({ params }: { params: { slug: string, episoden: string } }) {
     const detailEpisoden: Movie = await getEpisoden(params.slug, params.episoden);
 
-    if (!detailEpisoden || detailEpisoden.episodens.length < 1) {
+    if (!detailEpisoden) {
         return notFound();
     }
 
