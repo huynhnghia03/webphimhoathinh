@@ -3,8 +3,8 @@
 const nextConfig = {
     siteUrl: process.env.NEXT_PUBLIC_API_SITE, // URL trang web của bạn
     generateRobotsTxt: true, // Tạo robots.txt tự động
+    generateIndexSitemap: false,
     sitemapSize: 7000, // Kích thước sitemap
-    priority: 0.8,
     exclude: ['/admin/**'],
     robotsTxtOptions: {
         policies: [
@@ -21,16 +21,12 @@ const nextConfig = {
             const { dataAll } = await res.json();
             const allFilmPages = Array.from({ length: Math.ceil(dataAll.length / 14) }, (_, index) => ({
                 loc: `/AllFilm/${index + 1}`,
-                lastmod: new Date().toISOString(),
-                changefreq: 'daily',
-                priority: 0.8,
+                lastmod: new Date().toISOString()
             }));
             const episodePaths = dataAll.map((slug) => {
                 return Array.from({ length: parseInt(slug.totalEpiso) }, (_, i) => ({
                     loc: `/${slug.slug}/tap-${parseInt(slug.newEpiso) - i}.html`,
-                    lastmod: new Date().toISOString(),
-                    changefreq: 'daily',
-                    priority: 0.8,
+                    lastmod: new Date().toISOString()
                 }));
             }).flat();
 
@@ -39,9 +35,7 @@ const nextConfig = {
                 ...allFilmPages,
                 ...dataAll.map(slug => ({
                     loc: `/${slug.slug}`,
-                    lastmod: new Date().toISOString(),
-                    changefreq: 'daily',
-                    priority: 0.8,
+                    lastmod: new Date().toISOString()
                 })),
                 ...episodePaths
             ];
