@@ -3,7 +3,7 @@
 const nextConfig = {
     siteUrl: process.env.NEXT_PUBLIC_API_SITE, // URL trang web của bạn
     generateRobotsTxt: true, // Tạo robots.txt tự động
-    generateIndexSitemap: false,
+    generateIndexSitemap: true,
     sitemapSize: 7000, // Kích thước sitemap
     exclude: ['/admin/**'],
     robotsTxtOptions: {
