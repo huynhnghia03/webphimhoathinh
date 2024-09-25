@@ -15,37 +15,37 @@ const nextConfig = {
             }
         ],
     },
-    additionalPaths: async (config) => {
-        try {
-            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/topic/AllTopics`, { next: { revalidate: 60 } });
-            const { dataAll } = await res.json();
-            const allFilmPages = Array.from({ length: Math.ceil(dataAll.length / 14) }, (_, index) => ({
-                loc: `/AllFilm/${index + 1}`,
-                lastmod: new Date().toISOString()
-            }));
-            const episodePaths = dataAll.map((slug) => {
-                return Array.from({ length: parseInt(slug.totalEpiso) }, (_, i) => ({
-                    loc: `/${slug.slug}/tap-${parseInt(slug.newEpiso) - i}.html`,
-                    lastmod: new Date().toISOString()
-                }));
-            }).flat();
+    // additionalPaths: async (config) => {
+    //     try {
+    //         const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/topic/AllTopics`, { next: { revalidate: 60 } });
+    //         const { dataAll } = await res.json();
+    //         const allFilmPages = Array.from({ length: Math.ceil(dataAll.length / 14) }, (_, index) => ({
+    //             loc: `/AllFilm/${index + 1}`,
+    //             lastmod: new Date().toISOString()
+    //         }));
+    //         const episodePaths = dataAll.map((slug) => {
+    //             return Array.from({ length: parseInt(slug.totalEpiso) }, (_, i) => ({
+    //                 loc: `/${slug.slug}/tap-${parseInt(slug.newEpiso) - i}.html`,
+    //                 lastmod: new Date().toISOString()
+    //             }));
+    //         }).flat();
 
-            // Kết hợp tất cả các URL lại thành mảng duy nhất
-            const fullPaths = [
-                ...allFilmPages,
-                ...dataAll.map(slug => ({
-                    loc: `/${slug.slug}`,
-                    lastmod: new Date().toISOString()
-                })),
-                ...episodePaths
-            ];
-            // console.log(fullPaths)
-            return fullPaths
-        } catch (error) {
-            console.error("Error fetching additional paths:", error);
-            return [];
-        }
-    },
+    //         // Kết hợp tất cả các URL lại thành mảng duy nhất
+    //         const fullPaths = [
+    //             ...allFilmPages,
+    //             ...dataAll.map(slug => ({
+    //                 loc: `/${slug.slug}`,
+    //                 lastmod: new Date().toISOString()
+    //             })),
+    //             ...episodePaths
+    //         ];
+    //         // console.log(fullPaths)
+    //         return fullPaths
+    //     } catch (error) {
+    //         console.error("Error fetching additional paths:", error);
+    //         return [];
+    //     }
+    // },
 
 };
 
