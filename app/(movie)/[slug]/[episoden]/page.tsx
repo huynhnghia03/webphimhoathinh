@@ -20,7 +20,7 @@ export async function generateMetadata(
     // Safely access the title and description, and provide fallbacks
     const episodeTitle = detailEpisoden?.episodens[0]?.tiltle ?? params.episoden;
     const episodeDescription = detailEpisoden?.episodens[0]?.description ?? "Xem tập mới nhất";
-    const imageUrl = detailEpisoden?.image ? `/${detailEpisoden.image}` : "/logo.png"; // Ensure image URL is properly formatted
+    const imageUrl = detailEpisoden?.image ? `${process.env.NEXT_PUBLIC_API_SITE}${detailEpisoden.image}` : "/logo.png"; // Ensure image URL is properly formatted
 
     return {
         title: `${detailEpisoden.name} | ${episodeTitle} | ${detailEpisoden.category}`,

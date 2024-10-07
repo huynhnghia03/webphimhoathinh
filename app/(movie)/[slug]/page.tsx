@@ -40,7 +40,7 @@ export async function generateMetadata(
             url: `/${params.slug}`,
             images: [
                 {
-                    url: detail.image ? `/${detail.image}` : "/logo.png", // Fallback to logo.png
+                    url: detail.image ? `${process.env.NEXT_PUBLIC_API_SITE}${detail.image}` : "/logo.png", // Fallback to logo.png
                     width: 800,
                     height: 600,
                     alt: detail.name,
