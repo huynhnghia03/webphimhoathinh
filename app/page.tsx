@@ -4,11 +4,7 @@ import { getMovies } from "@/lib/moviesAPI";
 import NotFound from "./not-found";
 import ContentSlider from "@/components/layout/components/slider/contentSlider";
 import { Metadata } from "next";
-export const metadata: Metadata = {
-  title: "Hoạt Hình Trung Quốc 3D",
-  description: "Tổng hợp DORAEMON | HHTQ 3D | Hoạt Hình Trung Quốc 3D - Chinese Animation 3D - CN Animation 3D HD Vietsub, mới nhất 2024 cập nhật hàng ngày...",
 
-};
 
 async function Home() {
   // Fetch data here

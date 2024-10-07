@@ -30,12 +30,11 @@ export async function generateMetadata(
         };
     }
 
-
-
     return {
         title: `${detail.name} | Tập ${detail.newEpiso} | ${detail.category}`,
         description: `Xem phim ${detail.name} Tập mới nhất ${detail.newEpiso} vietsub ${detail.description}`,
         openGraph: {
+            type: 'website',
             title: `${detail.name} | Tập ${detail.newEpiso} | ${detail.category}`,
             description: `Xem phim ${detail.name} Tập mới nhất ${detail.newEpiso} vietsub ${detail.description}`,
             url: `/${params.slug}`,
@@ -62,7 +61,6 @@ export default async function DetailFilm({ params }: { params: { slug: string } 
     const detail = datas.find((val: Movie) => val.slug == params.slug)
     // const detail1 = dataAll.find((val: Movie) => val.slug == params.slug)
     if (!detailID && !detail) {
-        console.log("nonoo")
         return notFound();
     }
     return <ContentDetail detailMovie={detail || detailID} />;

@@ -19,6 +19,14 @@ export const metadata: Metadata = {
     locale: 'vi',
     url: process.env.NEXT_PUBLIC_API_FRONTEND,
     siteName: 'Hoạt Hình Trung Quốc 3D',
+    images: [
+      {
+          url: '/logo.png', // Global fallback image
+          width: 800,
+          height: 600,
+          alt: 'Hoạt Hình Trung Quốc 3D',
+      },
+  ],
   }
 };
 
@@ -53,7 +61,7 @@ export default function RootLayout({
           </div>
 
           <div className=" px-4 mb-4 md:px-8 lg:px-16 xl:px-32">
-            <GlobalEffects />
+            {/* <GlobalEffects /> */}
             {children}
           </div>
           <div className=" m-auto bg-[#232329] md:px-8 lg:px-16 xl:px-32">
